@@ -8,16 +8,28 @@ command:
 
 env:
   - name: FOUNDRY_API_KEY
-    valueFrom: azure_secrets/foundry_api_key
+    secret:
+      scope: azure_secrets
+      key: foundry_api_key
   - name: FOUNDRY_BASE_URL
-    valueFrom: azure_secrets/foundry_base_url
+    secret:
+      scope: azure_secrets
+      key: foundry_base_url
   - name: FOUNDRY_DEPLOYMENT
-    valueFrom: azure_secrets/foundry_deployment
+    secret:
+      scope: azure_secrets
+      key: foundry_deployment
   - name: NEO4J_URI
-    valueFrom: azure_secrets/neo4j_uri
+    secret:
+      scope: azure_secrets
+      key: neo4j_uri
   - name: NEO4J_USERNAME
-    valueFrom: azure_secrets/neo4j_username
+    secret:
+      scope: azure_secrets
+      key: neo4j_username
   - name: NEO4J_PASSWORD
-    valueFrom: azure_secrets/neo4j_password
+    secret:
+      scope: azure_secrets
+      key: neo4j_password
   - name: STREAMLIT_GATHER_USAGE_STATS
     value: "false"

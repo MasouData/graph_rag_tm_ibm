@@ -85,7 +85,7 @@ def get_neo4j_driver():
         ),
         connection_timeout=15.0,
     )
-    driver.verify_connectivity()
+    # Removed driver.verify_connectivity() - verify on first query instead
     return driver
 
 
@@ -362,12 +362,16 @@ Neo4j evidence:
 {evidence_json}
 """.strip()
 
-    response = get_foundry_client().responses.create(
+    # Fixed: Use proper chat completions API
+    response = get_foundry_client().chat.completions.create(
         model=get_deployment_name(),
-        input=prompt,
-        max_output_tokens=700,
+        messages=[
+            {"role": "system", "content": "You are a careful financial-crime graph assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=700,
     )
-    return response.output_text.strip()
+    return response.choices[0].message.content.strip()
 
 
 def ask_aml_graph(question: str) -> dict[str, Any]:
