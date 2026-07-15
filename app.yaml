@@ -2,32 +2,28 @@ command:
   - streamlit
   - run
   - app.py
+  - --server.address=0.0.0.0
+  - --server.port=${DATABRICKS_APP_PORT}
   - --server.headless=true
 
 env:
   - name: FOUNDRY_API_KEY
-    secret:
-      scope: azure_secrets
-      key: foundry_api_key
+    valueFrom: foundry_api_key
+
   - name: FOUNDRY_BASE_URL
-    secret:
-      scope: azure_secrets
-      key: foundry_base_url
+    valueFrom: foundry_base_url
+
   - name: FOUNDRY_DEPLOYMENT
-    secret:
-      scope: azure_secrets
-      key: foundry_deployment
+    valueFrom: foundry_deployment
+
   - name: NEO4J_URI
-    secret:
-      scope: azure_secrets
-      key: neo4j_uri
+    valueFrom: neo4j_uri
+
   - name: NEO4J_USERNAME
-    secret:
-      scope: azure_secrets
-      key: neo4j_username
+    valueFrom: neo4j_username
+
   - name: NEO4J_PASSWORD
-    secret:
-      scope: azure_secrets
-      key: neo4j_password
+    valueFrom: neo4j_password
+
   - name: STREAMLIT_GATHER_USAGE_STATS
     value: "false"
