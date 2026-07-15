@@ -2,9 +2,6 @@ command:
   - streamlit
   - run
   - app.py
-  - --server.address=0.0.0.0
-  - --server.port=${DATABRICKS_APP_PORT}
-  - --server.headless=true
 
 env:
   - name: FOUNDRY_API_KEY
